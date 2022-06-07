@@ -1,23 +1,38 @@
 package model;
 
-public class Room implements IRoom{
+public class Room implements IRoom {
+
+    String roomNumber;
+    Double price;
+    RoomType enumeration;
+
+    public Room(String roomNumber, Double price, RoomType enumeration) {
+        this.roomNumber = roomNumber;
+        this.price = price;
+        this.enumeration = enumeration;
+    }
     @Override
     public String getRoomNumber() {
-        return null;
+        return roomNumber;
     }
 
     @Override
     public Double getRoomPrice() {
-        return null;
+        return price;
     }
 
     @Override
     public RoomType getRoomType() {
-        return null;
+        return enumeration;
     }
 
     @Override
     public boolean isFree() {
         return false;
     }
+
+    public String toString() {
+        return "Room: "+roomNumber+"\nPrice: $"+price+"\nType: "+enumeration;
+    }
+
 }
