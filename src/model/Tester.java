@@ -10,6 +10,12 @@ public class Tester {
         System.out.println(testing);
         */
 
+        // Testing FreeRoom and Room classes
+        FreeRoom testRoom = new FreeRoom("1408",25.0 , RoomType.DOUBLE);
+        Room testRoom2 = new Room("504", 499.99, RoomType.SINGLE);
+        System.out.println(testRoom);
+        System.out.println(testRoom2);
+
     }
 
 }

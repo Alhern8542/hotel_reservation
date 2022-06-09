@@ -31,8 +31,9 @@ public class Room implements IRoom {
         return false;
     }
 
+    @Override
     public String toString() {
-        return "Room: "+roomNumber+"\nPrice: $"+price+"\nType: "+enumeration;
+        return "Room: #"+roomNumber+"\nPrice: $"+price+"\nType: "+enumeration;
     }
 
 }
