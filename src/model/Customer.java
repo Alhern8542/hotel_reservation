@@ -22,7 +22,7 @@ public class Customer {
 
     @Override
     public String toString() {
-        return "Name: "+firstName+" "+lastName+"\nEmail: "+email;
+        return "Name: "+firstName+" "+lastName+"  Email: "+email;
     }
 
 }

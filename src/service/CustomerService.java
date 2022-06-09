@@ -2,9 +2,7 @@ package service;
 
 import model.Customer;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class CustomerService {
 
@@ -18,9 +16,13 @@ public class CustomerService {
         return customers.get(customerEmail);
     }
 
-    /*public static Collection<Customer> getAllCustomers() {
-
-    }*/
+    public static Collection<Customer> getAllCustomers() {
+        List<Customer> customerList = new ArrayList<>();
+        for (Customer customer : customers.values()) {
+            customerList.add(customer);
+        }
+        return customerList;
+    }
 
 
 

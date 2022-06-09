@@ -16,6 +16,7 @@ public class Tester {
 
         System.out.println(CustomerService.getCustomer("babycutie9@gmail.com"));
 
+        System.out.println(CustomerService.getAllCustomers());
     }
 
 }
