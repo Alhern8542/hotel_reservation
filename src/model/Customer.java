@@ -1,5 +1,7 @@
 package model;
 
+import java.util.regex.Pattern;
+
 public class Customer {
 
     String firstName;
@@ -7,11 +9,15 @@ public class Customer {
     String email;
 
     public Customer(String firstName, String lastName, String email) {
-        //TODO: add regex to validate email; throw illegal Argument exception
-
+        // email regex still works if "." is missing (ex .com)
+        String emailRegex = "^(.+)@(.+).(.+)$";
+        Pattern pattern = Pattern.compile(emailRegex);
+        if(!pattern.matcher(email).matches()) {
+            throw new IllegalArgumentException("Invalid email");
+        }
+        this.email = email;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.email = email;
     }
 
     @Override
