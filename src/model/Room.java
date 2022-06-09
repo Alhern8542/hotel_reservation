@@ -27,9 +27,7 @@ public class Room implements IRoom {
     }
 
     @Override
-    public boolean isFree() {
-        return false;
-    }
+    public boolean isFree() { return false; }
 
     @Override
     public String toString() {
