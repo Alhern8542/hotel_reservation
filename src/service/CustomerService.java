@@ -8,8 +8,10 @@ public class CustomerService {
 
     static Map<String, Customer> customers = new HashMap<>();
     public static void addCustomer(String email, String firstName, String lastName) {
-        Customer newCustomer = new Customer(firstName, lastName, email);
-        customers.put(email, newCustomer);
+        if (!customers.containsKey(email)) {
+            Customer newCustomer = new Customer(firstName, lastName, email);
+            customers.put(email, newCustomer);
+        } else System.out.println("User with email:"+email+" already exists");
     }
 
     public static Customer getCustomer(String customerEmail) {
