@@ -15,10 +15,10 @@ public class HotelResource {
 //
 //    }
 //
-//    public void createACustomer(String email, String firstName, String lastName) {
-//
-//    }
-//
+    public void createACustomer(String email, String firstName, String lastName) {
+
+    }
+
 //    public IRoom getRoom(String roomNumber) {
 //
 //    }

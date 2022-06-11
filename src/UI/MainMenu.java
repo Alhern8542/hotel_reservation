@@ -1,14 +1,17 @@
 package UI;
 
+import api.HotelResource;
+
 import java.util.Scanner;
 
 public class MainMenu {
 
     public static void main(String[] args) {
         boolean keepRunning = true;
-        try(Scanner scanner = new Scanner(System.in)) {
+        try {
             while (keepRunning) {
                 try {
+                    Scanner scanner = new Scanner(System.in);
                     System.out.println("1. Find and reserve a room");
                     System.out.println("2. See my reservations");
                     System.out.println("3. Create an account");
@@ -19,23 +22,23 @@ public class MainMenu {
 
                     switch (selection) {
                         case 1:
-                            System.out.println("case 1 works");
-                            keepRunning = false;
+                            //
+                            //keepRunning = false;
                             break;
                         case 2:
-                            System.out.println("case 2 works");
-                            keepRunning = false;
+                            //
+                            //keepRunning = false;
                             break;
                         case 3:
-                            System.out.println("case 3 works");
-                            keepRunning = false;
+                            //
+                            //keepRunning = false;
                             break;
                         case 4:
-                            System.out.println("case 4 works");
-                            keepRunning = false;
+                            AdminMenu.admin();
+                            //keepRunning = false;
                             break;
                         case 5:
-                            System.out.println("case 5 works");
+                            System.out.println("Enjoy your stay!\nGoodbye!");
                             keepRunning = false;
                             break;
                         default:
@@ -49,6 +52,8 @@ public class MainMenu {
 
 
             }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
     }
 
