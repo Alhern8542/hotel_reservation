@@ -10,7 +10,7 @@ public class AdminMenu {
             while (keepRunning2) {
                 try {
                     Scanner scanner2 = new Scanner(System.in);
-                    System.out.println("1. See all Customers");
+                    System.out.println("-Admin Menu-\n1. See all Customers");
                     System.out.println("2. See all Rooms");
                     System.out.println("3. See all Reservations");
                     System.out.println("4. Add a Room");
@@ -36,8 +36,10 @@ public class AdminMenu {
                             //keepRunning2 = false;
                             break;
                         case 5:
-                            System.out.println("admin 5 works");
-                            keepRunning2 = false;
+                            System.out.println("Back to Main Menu?\n1. Yes\n2. No");
+                            int choice = Integer.parseInt(scanner2.nextLine());
+                            if (choice == 1) {keepRunning2 = false;}
+                            else if (choice == 2) {continue;}
                             break;
                         default:
                             System.out.println("\nPlease select (1-5) only");
@@ -51,9 +53,9 @@ public class AdminMenu {
                 //scanner2.close();
             }
 
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
+        }   catch (Exception e) {
+                throw new RuntimeException(e);
+            }
 
     }
 

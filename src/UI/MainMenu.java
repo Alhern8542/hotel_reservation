@@ -12,7 +12,7 @@ public class MainMenu {
             while (keepRunning) {
                 try {
                     Scanner scanner = new Scanner(System.in);
-                    System.out.println("1. Find and reserve a room");
+                    System.out.println("-Main Menu-\n1. Find and reserve a room");
                     System.out.println("2. See my reservations");
                     System.out.println("3. Create an account");
                     System.out.println("4. Admin");
@@ -52,9 +52,11 @@ public class MainMenu {
 
 
             }
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
+
+        }   catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+
     }
 
 
