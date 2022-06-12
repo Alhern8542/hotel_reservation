@@ -36,13 +36,20 @@ public class AdminMenu {
                             //keepRunning2 = false;
                             break;
                         case 5:
-                            System.out.println("Back to Main Menu?\n1. Yes\n2. No");
-                            int choice = Integer.parseInt(scanner2.nextLine());
-                            if (choice == 1) {keepRunning2 = false;}
-                            else if (choice == 2) {continue;}
+                            while (true) {
+                                System.out.println("Back to Main Menu?\n1. Yes\n2. No");
+                                int choice = Integer.parseInt(scanner2.nextLine());
+                                if (choice == 1) {
+                                    keepRunning2 = false;
+                                    break;
+                                } else if (choice == 2) {
+                                    break;
+                                } else System.out.println("Please select 1 or 2");
+                            }
                             break;
                         default:
-                            System.out.println("\nPlease select (1-5) only");
+                            System.out.println("\n" +
+                                    "Invalid selection, please select (1-5) only");
                     }
 
                 }

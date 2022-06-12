@@ -23,26 +23,23 @@ public class MainMenu {
                     switch (selection) {
                         case 1:
                             //
-                            //keepRunning = false;
                             break;
                         case 2:
                             //
-                            //keepRunning = false;
                             break;
                         case 3:
                             //
-                            //keepRunning = false;
                             break;
                         case 4:
                             AdminMenu.admin();
-                            //keepRunning = false;
                             break;
                         case 5:
                             System.out.println("Enjoy your stay!\nGoodbye!");
                             keepRunning = false;
                             break;
                         default:
-                            System.out.println("\nPlease select (1-5) only");
+                            System.out.println("\n" +
+                                    "Invalid selection, please select (1-5) only");
                     }
 
                 }
