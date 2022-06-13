@@ -1,5 +1,7 @@
 package UI;
 
+import api.AdminResource;
+
 import java.util.Scanner;
 
 public class AdminMenu {
@@ -20,20 +22,18 @@ public class AdminMenu {
 
                     switch (selection) {
                         case 1:
-                            System.out.println("admin 1 works");
-                            //keepRunning2 = false;
+                            System.out.println(AdminResource.getAllCustomers());
                             break;
                         case 2:
+                            //getAllRooms
                             System.out.println("admin 2 works");
-                            //keepRunning2 = false;
                             break;
                         case 3:
-                            System.out.println("admin 3 works");
-                            //keepRunning2 = false;
+                            AdminResource.displayAllReservations();
                             break;
                         case 4:
+                            //addRoom
                             System.out.println("admin 4 works");
-                            //keepRunning2 = false;
                             break;
                         case 5:
                             while (true) {
@@ -44,7 +44,7 @@ public class AdminMenu {
                                     break;
                                 } else if (choice == 2) {
                                     break;
-                                } else System.out.println("Please select 1 or 2");
+                                } else System.out.println("Please select option 1 or 2");
                             }
                             break;
                         default:

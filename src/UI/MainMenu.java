@@ -28,7 +28,19 @@ public class MainMenu {
                             //
                             break;
                         case 3:
-                            //
+                            try {
+                                System.out.println("Enter first name:");
+                                String firstName = scanner.nextLine();
+                                System.out.println("Enter last name:");
+                                String lastname = scanner.nextLine();
+                                System.out.println("Enter email:");
+                                String email = scanner.nextLine();
+                                HotelResource.createACustomer(email, firstName, lastname);
+                                System.out.println(HotelResource.getCustomer(email));
+                            }
+                            catch (IllegalArgumentException ex) {
+                                System.out.println(ex.getLocalizedMessage());
+                            }
                             break;
                         case 4:
                             AdminMenu.admin();
