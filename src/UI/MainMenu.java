@@ -3,6 +3,7 @@ package UI;
 import api.AdminResource;
 import api.HotelResource;
 
+import java.util.Date;
 import java.util.Scanner;
 
 public class MainMenu {
@@ -27,7 +28,20 @@ public class MainMenu {
 
                     switch (selection) {
                         case 1:
-                            //Find and reserve a room methods
+                            System.out.println("Enter CheckIn Date: (mm/dd/yyyy)");
+                            String checkIn = scanner.nextLine();
+                            System.out.println("Enter CheckOut Date: (mm/dd/yyyy)");
+                            String checkOut = scanner.nextLine();
+                            //findRooms() method here
+                            System.out.println("Would you like to book a room?\n1. Yes\n2.No");
+                            int book = Integer.parseInt(scanner.nextLine());
+                            System.out.println("Do you have an account with us?\n1. Yes\n2.No");
+                            int account = Integer.parseInt(scanner.nextLine());
+                            System.out.println("Enter your email: (name@domain.com)");
+                            String emailToBook = scanner.nextLine();
+                            System.out.println("Enter room# you would like to reserve");
+                            String room = scanner.nextLine();
+                            HotelResource.bookARoom(emailToBook, room, checkIn, checkOut);
                             break;
                         case 2:
                             //See my reservations method

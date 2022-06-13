@@ -32,6 +32,7 @@ public class AdminMenu {
                             System.out.println(AdminResource.getAllRooms());
                             break;
                         case 3:
+                            //TODO: test method
                             AdminResource.displayAllReservations();
                             break;
                         case 4:
