@@ -57,8 +57,7 @@ public class AdminMenu {
                                         System.out.println("Please enter 1 or 2");
                                     }
                                 }
-                                // addRoom method here
-
+                                AdminResource.addRoom(roomNum, bedType, price);
                                 int extraRoom;
                                 while (true) {
                                     System.out.println("Would you like to add another room?\n1. Yes\n2. No");
@@ -71,8 +70,7 @@ public class AdminMenu {
                                     }
                                     else {System.out.println("Please enter 1 or 2");}
                                 }
-                                if(extraRoom == 1) {continue;}
-                                else break;
+                                if(extraRoom == 2) {break;}
                             }
                             break;
                         case 5:

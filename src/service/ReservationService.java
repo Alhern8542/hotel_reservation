@@ -1,31 +1,29 @@
 package service;
 
-import model.Customer;
-import model.IRoom;
-import model.Reservation;
-import model.Room;
+import model.*;
 
 import java.util.*;
 
 public class ReservationService {
 
-    static Set<IRoom> roomSet = new HashSet<>();
+    static Map<String,IRoom> rooms = new HashMap<>();
     static Map<Customer,Reservation> reservations = new HashMap<>();
 
-//    public static void addRoom(IRoom room) {
-//        roomSet.add(room);
-//    }
-//
-//    public static IRoom getARoom(String roomId) {
-//
-//    }
+    public static void addRoom(String roomNumber, RoomType type, Double price) {
+        IRoom room = new Room(roomNumber, type, price);
+        rooms.put(roomNumber, room);
+    }
+
+    public static IRoom getARoom(String roomId) {
+        return rooms.get(roomId);
+    }
 
     public static Reservation reserveARoom(Customer customer, IRoom room, Date checkInDate, Date checkOutDate) {
         Reservation newReservation = null;
         if (!CustomerService.customers.containsValue(customer)) {
             System.out.println("Account not found. Please create an account");
         }
-        else if (!roomSet.contains(room)) {
+        else if (!rooms.containsValue(room)) {
             System.out.println("Room: #"+room+" is unavailable");
         }
         else {

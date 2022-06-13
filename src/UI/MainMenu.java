@@ -38,7 +38,7 @@ public class MainMenu {
                                 String firstName = scanner.nextLine();
                                 System.out.println("Enter last name:");
                                 String lastname = scanner.nextLine();
-                                System.out.println("Enter email:");
+                                System.out.println("Enter email: (name@domain.com)");
                                 String email = scanner.nextLine();
                                 HotelResource.createACustomer(email, firstName, lastname);
                                 System.out.println(AdminResource.getCustomer(email));
