@@ -20,9 +20,9 @@ public class AdminResource {
         System.out.println(ReservationService.getARoom(roomNumber));
     }
 
-//    public static Collection<IRoom> getAllRooms() {
-//
-//    }
+    public static Collection<IRoom> getAllRooms() {
+        return ReservationService.getAllRooms();
+    }
 
     public static Collection<Customer> getAllCustomers() {
         return CustomerService.getAllCustomers();

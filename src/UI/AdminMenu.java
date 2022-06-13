@@ -29,8 +29,7 @@ public class AdminMenu {
                             System.out.println(AdminResource.getAllCustomers());
                             break;
                         case 2:
-                            //getAllRooms
-                            System.out.println("admin 2 works");
+                            System.out.println(AdminResource.getAllRooms());
                             break;
                         case 3:
                             AdminResource.displayAllReservations();

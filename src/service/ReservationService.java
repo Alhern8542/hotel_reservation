@@ -46,4 +46,12 @@ public class ReservationService {
         for (Reservation reservation : reservations.values()) System.out.println(reservation);
     }
 
+    public static Collection<IRoom> getAllRooms() {
+        List<IRoom> roomList = new ArrayList<>();
+        for (IRoom room : rooms.values()) {
+            roomList.add(room);
+        }
+        return roomList;
+    }
+
 }
