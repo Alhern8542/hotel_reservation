@@ -6,17 +6,13 @@ public class Tester {
 
     public static void main(String[] args) {
 
+        IRoom test1 = new Room("1408", RoomType.SINGLE, 19.99);
+        IRoom test2 = new FreeRoom("404", RoomType.SINGLE);
+        IRoom test3 = new Room("901", RoomType.DOUBLE, 29.99);
 
-//        Customer testing = new Customer("Alberto", "Hernandez", "alhern@gmail.com");
-//        System.out.println(testing);
-
-        CustomerService.addCustomer("alhern8542@gmail.com","Alberto","Hernandez");
-        CustomerService.addCustomer("babycutie9@gmail.com","Keyhra","Hernandez");
-        CustomerService.addCustomer("bigkid10@gmail.com","Noemi","Santos");
-
-        System.out.println(CustomerService.getCustomer("babycutie9@gmail.com"));
-
-        System.out.println(CustomerService.getAllCustomers());
+        System.out.println(test1);
+        System.out.println(test2);
+        System.out.println(test3);
     }
 
 }
