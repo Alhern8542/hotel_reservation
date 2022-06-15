@@ -38,8 +38,8 @@ public class ReservationService {
 //
 //    }
 //
-    public static Collection<Reservation> getCustomersReservation(Customer customer) {
-        return (Collection<Reservation>) reservations.get(customer);
+    public static Reservation getCustomersReservation(Customer customer) {
+        return reservations.get(customer);
     }
 
     public static void printAllReservation() {

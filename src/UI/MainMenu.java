@@ -2,8 +2,6 @@ package UI;
 
 import api.AdminResource;
 import api.HotelResource;
-
-import java.util.Date;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
@@ -51,8 +49,6 @@ public class MainMenu {
                                     else System.out.println("Invalid Date format");
                                 }
                                 //findRooms() method here
-                                String emailToBook;
-                                String room;
 
                                 int book;
                                 while(true) {
@@ -62,7 +58,6 @@ public class MainMenu {
                                     else System.out.println("Please enter 1 or 2");
                                 }
                                 if(book == 2) {break;}
-
                                 int account;
                                 while(true) {
                                     System.out.println("Do you have an account with us?\n1. Yes\n2. No");
@@ -75,25 +70,25 @@ public class MainMenu {
                                     break;
                                 }
                                 System.out.println("Enter your email: (name@domain.com)");
-                                emailToBook = scanner.nextLine();
+                                String emailToBook = scanner.nextLine();
                                 if(HotelResource.getCustomer(emailToBook) == null) {
                                     System.out.println("Email was not found");
                                     break;
                                 }
-
                                 System.out.println("Enter room# you would like to reserve");
-                                room = scanner.nextLine();
+                                String room = scanner.nextLine();
                                 if(HotelResource.getRoom(room) == null) {
                                     System.out.println("Room was not found");
                                     break;
                                 }
-
-                                HotelResource.bookARoom(emailToBook, room, checkIn, checkOut);
+                                System.out.println(HotelResource.bookARoom(emailToBook, room, checkIn, checkOut));
                                 break;
                             }
                             break;
                         case 2:
-                            //See my reservations method
+                            System.out.println("Enter your reservation email");
+                            String reservationEmail = scanner.nextLine();
+                            System.out.println(HotelResource.getCustomersReservations(reservationEmail));
                             break;
                         case 3:
                             try {

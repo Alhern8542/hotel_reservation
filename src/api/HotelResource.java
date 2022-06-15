@@ -3,11 +3,8 @@ package api;
 import model.Customer;
 import model.IRoom;
 import model.Reservation;
-import model.Room;
 import service.CustomerService;
 import service.ReservationService;
-
-import java.util.Collection;
 import java.util.Date;
 
 public class HotelResource {
@@ -26,7 +23,7 @@ public class HotelResource {
         return ReservationService.getARoom(roomNumber);
     }
 
-// TODO: fix checkindate and checkoutdate
+// TODO: test check in date and check out date
     public static Reservation bookARoom(String customerEmail, String roomId, String checkIn, String checkOut) {
         Customer customer = CustomerService.getCustomer(customerEmail);
         IRoom room = getRoom(roomId);
@@ -35,9 +32,9 @@ public class HotelResource {
         return ReservationService.reserveARoom(customer,room,checkInDate,checkOutDate);
     }
 
-//    public Collection<Reservation> getCustomersReservations(String customerEmail) {
-//
-//    }
+    public static Reservation getCustomersReservations(String customerEmail) {
+        return ReservationService.getCustomersReservation(AdminResource.getCustomer(customerEmail));
+    }
 
 //    public Collection<IRoom> findARoom(Date checkIn, Date checkOut) {
 //
