@@ -5,6 +5,7 @@ import api.HotelResource;
 
 import java.util.Date;
 import java.util.Scanner;
+import java.util.regex.Pattern;
 
 public class MainMenu {
 
@@ -28,20 +29,68 @@ public class MainMenu {
 
                     switch (selection) {
                         case 1:
-                            System.out.println("Enter CheckIn Date: (mm/dd/yyyy)");
-                            String checkIn = scanner.nextLine();
-                            System.out.println("Enter CheckOut Date: (mm/dd/yyyy)");
-                            String checkOut = scanner.nextLine();
-                            //findRooms() method here
-                            System.out.println("Would you like to book a room?\n1. Yes\n2.No");
-                            int book = Integer.parseInt(scanner.nextLine());
-                            System.out.println("Do you have an account with us?\n1. Yes\n2.No");
-                            int account = Integer.parseInt(scanner.nextLine());
-                            System.out.println("Enter your email: (name@domain.com)");
-                            String emailToBook = scanner.nextLine();
-                            System.out.println("Enter room# you would like to reserve");
-                            String room = scanner.nextLine();
-                            HotelResource.bookARoom(emailToBook, room, checkIn, checkOut);
+                            while(true) {
+                                String regex = "^(1[0-2]|0[1-9])/(3[01]|[12][0-9]|0[1-9])/[0-9]{4}$";
+                                Pattern pattern = Pattern.compile(regex);
+                                String checkIn;
+                                String checkOut;
+                                while(true) {
+                                    System.out.println("Enter CheckIn Date: (mm/dd/yyyy)");
+                                    checkIn = scanner.nextLine();
+                                    if(pattern.matcher(checkIn).matches()) {
+                                        break;
+                                    }
+                                    else System.out.println("Invalid Date format");
+                                }
+                                while(true) {
+                                    System.out.println("Enter CheckOut Date: (mm/dd/yyyy)");
+                                    checkOut = scanner.nextLine();
+                                    if(pattern.matcher(checkOut).matches()) {
+                                        break;
+                                    }
+                                    else System.out.println("Invalid Date format");
+                                }
+                                //findRooms() method here
+                                String emailToBook;
+                                String room;
+
+                                int book;
+                                while(true) {
+                                    System.out.println("Would you like to book a room?\n1. Yes\n2. No");
+                                    book = Integer.parseInt(scanner.nextLine());
+                                    if(book == 1 || book == 2) {break;}
+                                    else System.out.println("Please enter 1 or 2");
+                                }
+                                if(book == 2) {break;}
+
+                                int account;
+                                while(true) {
+                                    System.out.println("Do you have an account with us?\n1. Yes\n2. No");
+                                    account = Integer.parseInt(scanner.nextLine());
+                                    if(account == 1 || account == 2) {break;}
+                                    else System.out.println("Please enter 1 or 2");
+                                }
+                                if(account == 2) {
+                                    System.out.println("Please create an account");
+                                    break;
+                                }
+                                System.out.println("Enter your email: (name@domain.com)");
+                                emailToBook = scanner.nextLine();
+                                if(HotelResource.getCustomer(emailToBook) == null) {
+                                    System.out.println("Email was not found");
+                                    break;
+                                }
+
+                                System.out.println("Enter room# you would like to reserve");
+                                room = scanner.nextLine();
+                                if(HotelResource.getRoom(room) == null) {
+                                    System.out.println("Room was not found");
+                                    break;
+                                }
+
+                                HotelResource.bookARoom(emailToBook, room, checkIn, checkOut);
+                                break;
+                            }
                             break;
                         case 2:
                             //See my reservations method

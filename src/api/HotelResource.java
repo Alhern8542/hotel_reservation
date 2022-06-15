@@ -27,9 +27,11 @@ public class HotelResource {
     }
 
 // TODO: fix checkindate and checkoutdate
-    public static Reservation bookARoom(String customerEmail, String roomId, Date checkInDate, Date checkOutDate) {
+    public static Reservation bookARoom(String customerEmail, String roomId, String checkIn, String checkOut) {
         Customer customer = CustomerService.getCustomer(customerEmail);
         IRoom room = getRoom(roomId);
+        Date checkInDate = new Date(checkIn);
+        Date checkOutDate = new Date(checkOut);
         return ReservationService.reserveARoom(customer,room,checkInDate,checkOutDate);
     }
 

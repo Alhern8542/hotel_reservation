@@ -2,17 +2,19 @@ package model;
 
 import service.CustomerService;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 public class Tester {
 
     public static void main(String[] args) {
 
-        IRoom test1 = new Room("1408", RoomType.SINGLE, 19.99);
-        IRoom test2 = new FreeRoom("404", RoomType.SINGLE);
-        IRoom test3 = new Room("901", RoomType.DOUBLE, 29.99);
+       String strDate = "09/01/1983";
+       Date dateObject = new Date(strDate);
+       System.out.println(dateObject);
 
-        System.out.println(test1);
-        System.out.println(test2);
-        System.out.println(test3);
     }
 
 }
