@@ -5,11 +5,13 @@ import model.IRoom;
 import model.Reservation;
 import service.CustomerService;
 import service.ReservationService;
+
+import java.util.Collection;
 import java.util.Date;
 
 public class HotelResource {
 
-//    TODO: provide a static reference
+
 
     public static Customer getCustomer(String email) {
         return CustomerService.getCustomer(email);
@@ -29,15 +31,18 @@ public class HotelResource {
         IRoom room = getRoom(roomId);
         Date checkInDate = new Date(checkIn);
         Date checkOutDate = new Date(checkOut);
-        return ReservationService.reserveARoom(customer,room,checkInDate,checkOutDate);
+        return ReservationService.reserveARoom(customer, room, checkInDate, checkOutDate);
     }
 
     public static Reservation getCustomersReservations(String customerEmail) {
         return ReservationService.getCustomersReservation(AdminResource.getCustomer(customerEmail));
     }
 
-//    public Collection<IRoom> findARoom(Date checkIn, Date checkOut) {
-//
-//    }
+// TODO: test check in date and check out date
+    public static Collection<IRoom> findARoom(String checkIn, String checkOut) {
+        Date checkInDate = new Date(checkIn);
+        Date checkOutDate = new Date(checkOut);
+        return ReservationService.findRooms(checkInDate, checkOutDate);
+    }
 
 }

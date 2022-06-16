@@ -48,8 +48,7 @@ public class MainMenu {
                                     }
                                     else System.out.println("Invalid Date format");
                                 }
-                                //findRooms() method here
-
+                                System.out.println(HotelResource.findARoom(checkIn, checkOut));
                                 int book;
                                 while(true) {
                                     System.out.println("Would you like to book a room?\n1. Yes\n2. No");
@@ -88,7 +87,9 @@ public class MainMenu {
                         case 2:
                             System.out.println("Enter your reservation email");
                             String reservationEmail = scanner.nextLine();
-                            System.out.println(HotelResource.getCustomersReservations(reservationEmail));
+                            if(HotelResource.getCustomersReservations(reservationEmail) == null) {
+                                System.out.println("Reservation not found with this email");
+                            }else System.out.println(HotelResource.getCustomersReservations(reservationEmail));
                             break;
                         case 3:
                             try {
