@@ -25,7 +25,7 @@ public class HotelResource {
         return ReservationService.getARoom(roomNumber);
     }
 
-// TODO: test check in date and check out date
+
     public static Reservation bookARoom(String customerEmail, String roomId, String checkIn, String checkOut) {
         Customer customer = CustomerService.getCustomer(customerEmail);
         IRoom room = getRoom(roomId);
@@ -38,7 +38,7 @@ public class HotelResource {
         return ReservationService.getCustomersReservation(AdminResource.getCustomer(customerEmail));
     }
 
-// TODO: test check in date and check out date
+
     public static Collection<IRoom> findARoom(String checkIn, String checkOut) {
         Date checkInDate = new Date(checkIn);
         Date checkOutDate = new Date(checkOut);

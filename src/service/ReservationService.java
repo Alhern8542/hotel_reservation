@@ -33,13 +33,14 @@ public class ReservationService {
         }
         return newReservation;
     }
-// TODO: find bug
+
     public static Collection<IRoom> findRooms(Date checkInDate, Date checkOutDate) {
         List<IRoom> roomsAvailable = new ArrayList<>();
         for (IRoom room : rooms.values()) {
-            Date in = reservations.get(room.getRoomNumber()).getCheckInDate();
-            Date out = reservations.get(room.getRoomNumber()).getCheckOutDate();
+
             if(reservations.containsValue(room)) {
+                Date in = reservations.get(room.getRoomNumber()).getCheckInDate();
+                Date out = reservations.get(room.getRoomNumber()).getCheckOutDate();
                 if((checkInDate.before(in) && checkOutDate.before(in)) || (checkInDate.after(out) && checkOutDate.after(out)) ) {
                     roomsAvailable.add(room);
                 }
