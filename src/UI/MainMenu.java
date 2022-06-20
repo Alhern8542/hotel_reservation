@@ -28,7 +28,7 @@ public class MainMenu {
                     switch (selection) {
                         case 1:
                             while(true) {
-                                String regex = "^(1[0-2]|0[1-9])/(3[01]|[12][0-9]|0[1-9])/[0-9]{4}$";
+                                final String regex = "^(1[0-2]|0[1-9])/(3[01]|[12][0-9]|0[1-9])/[0-9]{4}$";
                                 Pattern pattern = Pattern.compile(regex);
                                 String checkIn;
                                 String checkOut;

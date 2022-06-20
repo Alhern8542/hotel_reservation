@@ -7,7 +7,7 @@ public class FreeRoom extends Room {
     }
 
     @Override
-    public boolean isFree() {
+    final public boolean isFree() {
         return true;
     }
 
