@@ -12,10 +12,12 @@ public class Customer {
         // email regex still works if "." is missing (ex .com)
         String emailRegex = "^(.+)@(.+).(.+)$";
         Pattern pattern = Pattern.compile(emailRegex);
-        if(!pattern.matcher(email).matches()) {
+        if(pattern.matcher(email).matches()) {
+            this.email = email;
+        }
+        else {
             throw new IllegalArgumentException("*Invalid email*");
         }
-        this.email = email;
         this.firstName = firstName;
         this.lastName = lastName;
     }

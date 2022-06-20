@@ -32,22 +32,24 @@ public class ReservationService {
 
         }
         return newReservation;
+
     }
 
     public static Collection<IRoom> findRooms(Date checkInDate, Date checkOutDate) {
         List<IRoom> roomsAvailable = new ArrayList<>();
-        for (IRoom room : rooms.values()) {
-
-            if(reservations.containsValue(room)) {
-                Date in = reservations.get(room.getRoomNumber()).getCheckInDate();
-                Date out = reservations.get(room.getRoomNumber()).getCheckOutDate();
-                if((checkInDate.before(in) && checkOutDate.before(in)) || (checkInDate.after(out) && checkOutDate.after(out)) ) {
-                    roomsAvailable.add(room);
+        for (IRoom roomAdd : rooms.values()) {
+            if (!reservations.isEmpty()) {
+                for (Reservation res : reservations.values()) {
+                    if (roomAdd.equals(res.getRoom())) {
+                        Date in = res.getCheckInDate();
+                        Date out = res.getCheckOutDate();
+                        if ( (checkInDate.before(in) && checkOutDate.before(in)) || (checkInDate.after(out) && checkOutDate.after(out)) ) {
+                            roomsAvailable.add(roomAdd);
+                        }
+                    } else roomsAvailable.add(roomAdd);
                 }
             }
-            else {
-                roomsAvailable.add(room);
-            }
+            else roomsAvailable.add(roomAdd);
         }
         return roomsAvailable;
     }

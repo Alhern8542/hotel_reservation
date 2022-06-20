@@ -38,7 +38,6 @@ public class HotelResource {
         return ReservationService.getCustomersReservation(AdminResource.getCustomer(customerEmail));
     }
 
-
     public static Collection<IRoom> findARoom(String checkIn, String checkOut) {
         Date checkInDate = new Date(checkIn);
         Date checkOutDate = new Date(checkOut);
