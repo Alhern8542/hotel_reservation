@@ -1,18 +1,21 @@
-package UI;
+package api;
 
-import api.AdminResource;
-import api.HotelResource;
+
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
 public class MainMenu {
 
+
+
     public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        HotelResource hr = new HotelResource();
         boolean keepRunning = true;
         try {
             while (keepRunning) {
                 try {
-                    Scanner scanner = new Scanner(System.in);
+
                     System.out.println("\nWelcome to the Hotel Reservation System");
                     System.out.println("------------------------------");
                     System.out.println("         (Main Menu)");
@@ -48,7 +51,7 @@ public class MainMenu {
                                     }
                                     else System.out.println("Invalid Date format");
                                 }
-                                System.out.println(HotelResource.findARoom(checkIn, checkOut));
+                                System.out.println(hr.findARoom(checkIn, checkOut));
                                 int book;
                                 while(true) {
                                     System.out.println("Would you like to book a room?\n1. Yes\n2. No");
@@ -70,26 +73,26 @@ public class MainMenu {
                                 }
                                 System.out.println("Enter your email: (name@domain.com)");
                                 String emailToBook = scanner.nextLine();
-                                if(HotelResource.getCustomer(emailToBook) == null) {
+                                if(hr.getCustomer(emailToBook) == null) {
                                     System.out.println("Email was not found");
                                     break;
                                 }
                                 System.out.println("Enter room# you would like to reserve");
                                 String room = scanner.nextLine();
-                                if(HotelResource.getRoom(room) == null) {
+                                if(hr.getRoom(room) == null) {
                                     System.out.println("Room was not found");
                                     break;
                                 }
-                                System.out.println(HotelResource.bookARoom(emailToBook, room, checkIn, checkOut));
+                                System.out.println(hr.bookARoom(emailToBook, room, checkIn, checkOut));
                                 break;
                             }
                             break;
                         case 2:
                             System.out.println("Enter your reservation email");
                             String reservationEmail = scanner.nextLine();
-                            if(HotelResource.getCustomersReservations(reservationEmail) == null) {
+                            if(hr.getCustomersReservations(reservationEmail) == null) {
                                 System.out.println("Reservation not found with this email");
-                            }else System.out.println(HotelResource.getCustomersReservations(reservationEmail));
+                            }else System.out.println(hr.getCustomersReservations(reservationEmail));
                             break;
                         case 3:
                             try {
@@ -99,8 +102,8 @@ public class MainMenu {
                                 String lastname = scanner.nextLine();
                                 System.out.println("Enter email: (name@domain.com)");
                                 String email = scanner.nextLine();
-                                HotelResource.createACustomer(email, firstName, lastname);
-                                System.out.println(AdminResource.getCustomer(email));
+                                hr.createACustomer(email, firstName, lastname);
+                                System.out.println(hr.getCustomer(email));
                             }
                             catch (IllegalArgumentException ex) {
                                 System.out.println(ex.getLocalizedMessage());

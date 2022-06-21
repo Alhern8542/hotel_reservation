@@ -9,25 +9,28 @@ import java.util.Collection;
 
 public class AdminResource {
 
-    public static Customer getCustomer(String email) {
-        return CustomerService.getCustomer(email);
+    static ReservationService thisReservationService = new ReservationService();
+    static CustomerService thisCustomerService = new CustomerService();
+
+    public Customer getCustomer(String email) {
+        return thisCustomerService.getCustomer(email);
     }
 
-    public static void addRoom(String roomNumber, RoomType type, Double price) {
-        ReservationService.addRoom(roomNumber, type, price);
-        System.out.println(ReservationService.getARoom(roomNumber));
+    public void addRoom(String roomNumber, RoomType type, Double price) {
+        thisReservationService.addRoom(roomNumber, type, price);
+        System.out.println(thisReservationService.getARoom(roomNumber));
     }
 
-    public static Collection<IRoom> getAllRooms() {
-        return ReservationService.getAllRooms();
+    public Collection<IRoom> getAllRooms() {
+        return thisReservationService.getAllRooms();
     }
 
-    public static Collection<Customer> getAllCustomers() {
-        return CustomerService.getAllCustomers();
+    public Collection<Customer> getAllCustomers() {
+        return thisCustomerService.getAllCustomers();
     }
 
-    public static void displayAllReservations() {
-        ReservationService.printAllReservation();
+    public void displayAllReservations() {
+        thisReservationService.printAllReservation();
     }
 
 }

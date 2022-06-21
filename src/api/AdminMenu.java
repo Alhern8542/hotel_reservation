@@ -1,13 +1,12 @@
-package UI;
+package api;
 
-import api.AdminResource;
 import model.RoomType;
-
 import java.util.Scanner;
 
 public class AdminMenu {
 
     public static void admin() {
+        AdminResource ar = new AdminResource();
         boolean keepRunning2 = true;
         try {
             while (keepRunning2) {
@@ -26,13 +25,13 @@ public class AdminMenu {
 
                     switch (selection) {
                         case 1:
-                            System.out.println(AdminResource.getAllCustomers());
+                            System.out.println(ar.getAllCustomers());
                             break;
                         case 2:
-                            System.out.println(AdminResource.getAllRooms());
+                            System.out.println(ar.getAllRooms());
                             break;
                         case 3:
-                            AdminResource.displayAllReservations();
+                            ar.displayAllReservations();
                             break;
                         case 4:
                             while (true) {
@@ -56,7 +55,7 @@ public class AdminMenu {
                                         System.out.println("Please enter 1 or 2");
                                     }
                                 }
-                                AdminResource.addRoom(roomNum, bedType, price);
+                                ar.addRoom(roomNum, bedType, price);
                                 int extraRoom;
                                 while (true) {
                                     System.out.println("Would you like to add another room?\n1. Yes\n2. No");
