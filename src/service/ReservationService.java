@@ -20,23 +20,25 @@ public class ReservationService {
 
     public static Reservation reserveARoom(Customer customer, IRoom room, Date checkInDate, Date checkOutDate) {
         Reservation newReservation = null;
-        if (!CustomerService.customers.containsValue(customer)) {
-            System.out.println("Account not found. Please create an account");
-        }
-        else if (!rooms.containsValue(room)) {
-            System.out.println("Room: #"+room+" is unavailable");
+        if (roomsAvailable.contains(room)) {
+            if (!CustomerService.customers.containsValue(customer)) {
+                System.out.println("Account not found. Please create an account");
+            } else if (!rooms.containsValue(room)) {
+                System.out.println("Room: #" + room + " is unavailable");
+            } else {
+                newReservation = new Reservation(customer, room, checkInDate, checkOutDate);
+                reservations.put(customer, newReservation);
+            }
         }
         else {
-            newReservation = new Reservation(customer, room, checkInDate, checkOutDate);
-            reservations.put(customer, newReservation);
-
+            System.out.println("Room "+room.getRoomNumber()+" is unavailable for reservation");
         }
         return newReservation;
-
     }
 
+    static List<IRoom> roomsAvailable = new ArrayList<>();
     public static Collection<IRoom> findRooms(Date checkInDate, Date checkOutDate) {
-        List<IRoom> roomsAvailable = new ArrayList<>();
+        roomsAvailable.clear();
         for (IRoom roomAdd : rooms.values()) {
             if (!reservations.isEmpty()) {
                 for (Reservation res : reservations.values()) {
