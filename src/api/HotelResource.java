@@ -6,6 +6,7 @@ import model.Reservation;
 import service.CustomerService;
 import service.ReservationService;
 
+import java.util.Calendar;
 import java.util.Collection;
 import java.util.Date;
 
@@ -40,9 +41,22 @@ public class HotelResource {
     }
 
     public Collection<IRoom> findARoom(String checkIn, String checkOut) {
+        Collection<IRoom> roomList;
         Date checkInDate = new Date(checkIn);
         Date checkOutDate = new Date(checkOut);
-        return thisReservationService.findRooms(checkInDate, checkOutDate);
+        roomList = thisReservationService.findRooms(checkInDate, checkOutDate);
+        if (roomList.isEmpty()) {
+            Calendar cal1 = Calendar.getInstance();
+            cal1.setTime(checkInDate);
+            cal1.add(Calendar.DATE, 7);
+            Date newCheckInDate = cal1.getTime();
+            Calendar cal2 = Calendar.getInstance();
+            cal2.setTime(checkOutDate);
+            cal2.add(Calendar.DATE, 7);
+            Date newCheckOutDate = cal1.getTime();
+            roomList = thisReservationService.getRecommendations(newCheckInDate,newCheckOutDate, checkIn, checkOut);
+        }
+        return roomList;
     }
 
 }

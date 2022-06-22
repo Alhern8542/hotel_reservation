@@ -3,7 +3,6 @@ package model;
 import java.util.regex.Pattern;
 
 public class Customer {
-// TODO: make sure private vars work
     private String firstName;
     private String lastName;
     private String email;

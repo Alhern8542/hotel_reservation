@@ -36,52 +36,46 @@ public class ReservationService {
         }
         return newReservation;
     }
-// TODO: add recommendations feature
+
     public Collection<IRoom> findRooms(Date checkInDate, Date checkOutDate) {
         roomsAvailable.clear();
         for (IRoom roomAdd : rooms.values()) {
+            roomsAvailable.add(roomAdd);
+        }
+        for (IRoom roomDel : rooms.values()) {
             if (!reservations.isEmpty()) {
                 for (Reservation res : reservations.values()) {
-                    if (roomAdd.equals(res.getRoom())) {
+                    if (roomDel.equals(res.getRoom())) {
                         Date in = res.getCheckInDate();
                         Date out = res.getCheckOutDate();
-                        if ( (checkInDate.before(in) && checkOutDate.before(in)) || (checkInDate.after(out) && checkOutDate.after(out)) ) {
-                            roomsAvailable.add(roomAdd);
+                        if (!((checkInDate.before(in) && checkOutDate.before(in)) || (checkInDate.after(out) && checkOutDate.after(out)))) {
+                            roomsAvailable.remove(roomDel);
                         }
-                    } else roomsAvailable.add(roomAdd);
-                }
-            }
-            else roomsAvailable.add(roomAdd);
-        }
-        if (roomsAvailable.isEmpty()) {
-            System.out.println("Sorry rooms are unavailable from: "+checkInDate+" and "+checkOutDate);
-            System.out.println("Here are some recommendations...");
-            for (IRoom roomAdd : rooms.values()) {
-                if (!reservations.isEmpty()) {
-                    for (Reservation res : reservations.values()) {
-                        if (roomAdd.equals(res.getRoom())) {
-                            Date in = res.getCheckInDate();
-                            Date out = res.getCheckOutDate();
-
-                            Calendar cal1 = Calendar.getInstance();
-                            cal1.setTime(checkInDate);
-                            cal1.add(Calendar.DATE, 7);
-                            Date newCheckInDate = cal1.getTime();
-
-                            Calendar cal2 = Calendar.getInstance();
-                            cal2.setTime(checkOutDate);
-                            cal2.add(Calendar.DATE, 7);
-                            Date newCheckOutDate = cal1.getTime();
-
-                            if ( (newCheckInDate.before(in) && newCheckOutDate.before(in)) || (newCheckInDate.after(out) && newCheckOutDate.after(out)) ) {
-                                roomsAvailable.add(roomAdd);
-                            }
-                        } else roomsAvailable.add(roomAdd);
                     }
                 }
-                else roomsAvailable.add(roomAdd);
             }
+        }
+        return roomsAvailable;
+    }
 
+    public Collection<IRoom> getRecommendations(Date newCheckInDate, Date newCheckOutDate, String checkIn, String checkOut) {
+        System.out.println("Sorry no rooms are available from: "+checkIn+" and "+checkOut);
+        System.out.println("Here are some recommendations for the same days next week...");
+        for (IRoom roomAdd : rooms.values()) {
+            roomsAvailable.add(roomAdd);
+        }
+        for (IRoom roomDel : rooms.values()) {
+            if (!reservations.isEmpty()) {
+                for (Reservation res : reservations.values()) {
+                    if (roomDel.equals(res.getRoom())) {
+                        Date in = res.getCheckInDate();
+                        Date out = res.getCheckOutDate();
+                        if (!((newCheckInDate.before(in) && newCheckOutDate.before(in)) || (newCheckInDate.after(out) && newCheckOutDate.after(out)))) {
+                            roomsAvailable.remove(roomDel);
+                        }
+                    }
+                }
+            }
         }
         return roomsAvailable;
     }
@@ -101,7 +95,7 @@ public class ReservationService {
         }
         return roomList;
     }
-    // TODO: default?
+
     Date getCheckInDate() {
         return getCheckInDate();
     }
