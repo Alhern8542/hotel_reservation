@@ -36,7 +36,7 @@ public class ReservationService {
         }
         return newReservation;
     }
-
+// TODO: add recommendations feature
     public Collection<IRoom> findRooms(Date checkInDate, Date checkOutDate) {
         roomsAvailable.clear();
         for (IRoom roomAdd : rooms.values()) {
@@ -53,6 +53,36 @@ public class ReservationService {
             }
             else roomsAvailable.add(roomAdd);
         }
+        if (roomsAvailable.isEmpty()) {
+            System.out.println("Sorry rooms are unavailable from: "+checkInDate+" and "+checkOutDate);
+            System.out.println("Here are some recommendations...");
+            for (IRoom roomAdd : rooms.values()) {
+                if (!reservations.isEmpty()) {
+                    for (Reservation res : reservations.values()) {
+                        if (roomAdd.equals(res.getRoom())) {
+                            Date in = res.getCheckInDate();
+                            Date out = res.getCheckOutDate();
+
+                            Calendar cal1 = Calendar.getInstance();
+                            cal1.setTime(checkInDate);
+                            cal1.add(Calendar.DATE, 7);
+                            Date newCheckInDate = cal1.getTime();
+
+                            Calendar cal2 = Calendar.getInstance();
+                            cal2.setTime(checkOutDate);
+                            cal2.add(Calendar.DATE, 7);
+                            Date newCheckOutDate = cal1.getTime();
+
+                            if ( (newCheckInDate.before(in) && newCheckOutDate.before(in)) || (newCheckInDate.after(out) && newCheckOutDate.after(out)) ) {
+                                roomsAvailable.add(roomAdd);
+                            }
+                        } else roomsAvailable.add(roomAdd);
+                    }
+                }
+                else roomsAvailable.add(roomAdd);
+            }
+
+        }
         return roomsAvailable;
     }
 
@@ -64,7 +94,6 @@ public class ReservationService {
         for (Reservation reservation : reservations.values()) System.out.println(reservation);
     }
 
-
     public Collection<IRoom> getAllRooms() {
         List<IRoom> roomList = new ArrayList<>();
         for (IRoom room : rooms.values()) {
@@ -72,12 +101,12 @@ public class ReservationService {
         }
         return roomList;
     }
-
-    public Date getCheckInDate() {
+    // TODO: default?
+    Date getCheckInDate() {
         return getCheckInDate();
     }
 
-    public Date getCheckOutDate() {
+    Date getCheckOutDate() {
         return getCheckOutDate();
     }
 

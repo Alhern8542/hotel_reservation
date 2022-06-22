@@ -6,8 +6,6 @@ import java.util.regex.Pattern;
 
 public class MainMenu {
 
-
-
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         HotelResource hr = new HotelResource();
@@ -15,7 +13,6 @@ public class MainMenu {
         try {
             while (keepRunning) {
                 try {
-
                     System.out.println("\nWelcome to the Hotel Reservation System");
                     System.out.println("------------------------------");
                     System.out.println("         (Main Menu)");
