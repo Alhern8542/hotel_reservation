@@ -6,9 +6,15 @@ import java.util.*;
 
 public class ReservationService {
 
+    static boolean roomWasRecommended;
     static Map<String,IRoom> rooms = new HashMap<>();
     static Map<Customer,Reservation> reservations = new HashMap<>();
     static List<IRoom> roomsAvailable = new ArrayList<>();
+
+
+    public boolean roomWasRecommended() {
+        return roomWasRecommended;
+    }
 
     public void addRoom(String roomNumber, RoomType type, Double price) {
         IRoom room = new Room(roomNumber, type, price);
@@ -38,6 +44,7 @@ public class ReservationService {
     }
 
     public Collection<IRoom> findRooms(Date checkInDate, Date checkOutDate) {
+        roomWasRecommended = false;
         roomsAvailable.clear();
         for (IRoom roomAdd : rooms.values()) {
             roomsAvailable.add(roomAdd);
@@ -59,6 +66,7 @@ public class ReservationService {
     }
 
     public Collection<IRoom> getRecommendations(Date newCheckInDate, Date newCheckOutDate, String checkIn, String checkOut) {
+        roomWasRecommended = true;
         System.out.println("Sorry no rooms are available from: "+checkIn+" and "+checkOut);
         System.out.println("Here are some recommendations for the same days next week...");
         for (IRoom roomAdd : rooms.values()) {

@@ -12,10 +12,12 @@ import java.util.Date;
 
 public class HotelResource {
 
-    static IRoom thisRoom;
     static ReservationService thisReservationService = new ReservationService();
     static CustomerService thisCustomerService = new CustomerService();
 
+    public boolean roomWasRecommended() {
+        return thisReservationService.roomWasRecommended();
+    }
     public Customer getCustomer(String email) {
         return thisCustomerService.getCustomer(email);
     }

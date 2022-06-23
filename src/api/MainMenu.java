@@ -1,6 +1,10 @@
 package api;
 
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
@@ -80,7 +84,31 @@ public class MainMenu {
                                     System.out.println("Room was not found");
                                     break;
                                 }
-                                System.out.println(hr.bookARoom(emailToBook, room, checkIn, checkOut));
+                                if (!hr.roomWasRecommended()) {
+                                    System.out.println(hr.bookARoom(emailToBook, room, checkIn, checkOut));
+                                }
+                                else if (hr.roomWasRecommended()) {
+                                    Date checkInDate = new Date(checkIn);
+                                    Date checkOutDate = new Date(checkOut);
+
+                                    Calendar cal1 = Calendar.getInstance();
+                                    cal1.setTime(checkInDate);
+                                    cal1.add(Calendar.DATE, 7);
+                                    Date newCheckInDate = cal1.getTime();
+
+                                    Calendar cal2 = Calendar.getInstance();
+                                    cal2.setTime(checkOutDate);
+                                    cal2.add(Calendar.DATE, 7);
+                                    Date newCheckOutDate = cal2.getTime();
+
+                                    DateFormat formatIn = new SimpleDateFormat("MM/dd/yyyy");
+                                    DateFormat formatOut = new SimpleDateFormat("MM/dd/yyyy");
+
+                                    String strCheckIn = formatIn.format(newCheckInDate);
+                                    String strCheckOut = formatOut.format(newCheckOutDate);
+
+                                    System.out.println(hr.bookARoom(emailToBook, room, strCheckIn, strCheckOut));
+                                }
                                 break;
                             }
                             break;

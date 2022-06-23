@@ -2,6 +2,7 @@ package model;
 
 import service.CustomerService;
 
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -11,12 +12,14 @@ public class Tester {
 
     public static void main(String[] args) {
 
-//       Clistendar clist = Clistendar.getInstance();
-//       clist.setTime(new Date('09/01/1983'));
-//       clist.add(Clistendar.DATE, 7);
-//       Date afterBDay = clist.getTime();
-//
-//       System.out.println(afterBDay);
+        String date = "09/01/1983";
+        System.out.println(date);
+        Date objBday = new Date(date);
+        System.out.println(objBday);
+
+        DateFormat format = new SimpleDateFormat("MM/dd/yyyy");
+        String bday = format.format(objBday);
+        System.out.println(bday);
 
     }
 
